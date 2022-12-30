@@ -1,9 +1,9 @@
+import glob
 import json
+import os
 import pathlib
 import zlib
 import argparse
-import glob
-import os
 
 from PIL import Image
 import numpy as np
@@ -80,7 +80,7 @@ if args.image:
 elif args.folder:
     to_process = []
     os.chdir(args.folder)
-    os.makedirs('converted')
+    os.makedirs('converted', exist_ok=True)
     to_process += glob.glob('*.png')
     for image in to_process:
         all_data = extract_image_data_embed(Image.open(image))
